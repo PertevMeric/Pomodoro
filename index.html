@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="chunks.css">
+
+</head>
+<body>
+<h1>Pomodoro Timer</h1>
+<div id="clockdiv">
+  <div>
+    <span id="minutes_span" class="minutes"></span>
+    <div  class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span id="seconds_span"  class="seconds"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
+<div>
+    <p style="color: aliceblue;">The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It uses a timer to break work into intervals, typically 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for tomato, after the tomato-shaped kitchen timer Cirillo used as a university student.</p>
+</div>
+<div>
+<input type="button" value="Start" onclick="start()" id="startButton">
+<input type="button" value="Restart" onclick="restart()">
+<input type="button" value="Stop"  disabled onclick="stop()" id="stopButton">
+</div>
+<br>
+<div style="opacity: 0.5;">
+<audio id="audioplayer" controls> 
+</audio>
+</div>
+<script>
+    //init html
+    var clock = document.getElementById('clockdiv');
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
+    minutesSpan.innerHTML = "00";
+    secondsSpan.innerHTML = "00";
+
+    //sound
+    var lastSong = null;
+    var selection = null;
+    var playlist = ["sound/1.mp3", "sound/2.mp3", "sound/3.mp3"];
+    var player = document.getElementById("audioplayer"); 
+    player.autoplay=false;
+    player.addEventListener("ended", selectRandom);
+    
+    //disable
+    document.getElementById("stopButton").disabled = true; 
+
+    function selectRandom(){
+        while(selection == lastSong){ 
+            selection = Math.floor(Math.random() * playlist.length);
+        }
+        lastSong = selection; 
+        player.src = playlist[selection]; 
+    }
+
+   
+
+
+   
+    var timeinterval;
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+    
+        return {
+          'minutes': minutes,
+          'seconds': seconds
+        };
+      }
+      
+      function initializeClock(endtime,reset) {
+        
+        var clock = document.getElementById('clockdiv');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
+        
+      
+
+        function updateClock() {
+          var t = getTimeRemaining(endtime);
+          minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+          secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+         
+         
+          if (t.minutes  <= 0 && t.seconds  <= 0 )  {
+            
+            clearInterval(timeinterval);
+            player.pause();
+            player.src = 'sound/stop.mp3';
+            player.load();
+            player.play();
+           
+
+          }
+        }
+
+    
+        updateClock();
+        timeinterval = setInterval(updateClock, 1000);
+
+
+            
+        }
+      function start() {
+
+        var minutes_span_value = document.getElementById("minutes_span").innerText;
+        var seconds_span_value = document.getElementById("seconds_span").innerText;
+      
+        if( minutes_span_value == "00" && seconds_span_value == "00"){
+        var deadline = new Date(Date.parse(new Date()) + 20 * 60 * 1000);  
+        initializeClock(deadline,reset=1);
+        selectRandom(); 
+        player.play();
+        }else {
+          var deadline = new Date(Date.parse(new Date()) + ( parseInt(minutes_span_value) * 60 * 1000 ) + ( parseInt(seconds_span_value) * 1000 ));
+          initializeClock(deadline,reset=1);  
+          player.play();
+        }
+        document.getElementById("startButton").disabled = true; 
+        document.getElementById("stopButton").disabled = false;
+         
+        
+      }
+
+      function restart(){
+        
+        console.log("restart");
+        
+        clearInterval(timeinterval);
+        start()
+       
+        
+      }
+      function stop(){
+        console.log("stop");
+        clearInterval(timeinterval);
+        player.pause();
+        document.getElementById("startButton").disabled = false; 
+        document.getElementById("stopButton").disabled = true; 
+       
+        
+       
+        
+      }
+
+      
+
+ 
+      
+</script>
