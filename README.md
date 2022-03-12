@@ -1,5 +1,6 @@
 # Pomodoro
-Timer Images [![Awesome](images/timer.png)
+Timer Images [![Timer](images/timer.png)](https://erelbi.github.io/Pomodoro/)
+==============
 The original technique has six steps:
 
 * Decide on the task to be done.
