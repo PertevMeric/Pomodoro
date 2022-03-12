@@ -23,17 +23,20 @@
 </script>
  <!-- Global site tag (gtag.js) - Google Analytics -->
 <link rel="stylesheet" href="chunks.css">
+
 <body>
-  <div class="ribbon">
-    <a href="https://github.com/erelbi/Pomodoro">Fork me on GitHub</a>
+<h1 style="margin: 1px; color: #fdfdfd;">Pomodoro Timer</h1>
+<div style="margin-bottom: 10px;">
+  <input type="button" class="button_main" style="border-radius: 20%; background-color: #60c063;" value="Start" onclick="start()" id="startButton">
+  <input type="button" class="button_main" style="border-radius: 40%; background-color: #dae954; color: black;" value="Restart" onclick="restart()">
+  <input type="button" class="button_main" style="border-radius: 20%;  background-color: #c06060;" value="Stop"  disabled onclick="stop()" id="stopButton">
   </div>
-<h1>Pomodoro Timer</h1>
 <div id="clockdiv">
-  <div>
+  <div style="margin-bottom: 5px; position: relative">
     <span id="minutes_span" class="minutes"></span>
     <div  class="smalltext">Minutes</div>
   </div>
-  <div>
+  <div style="position: relative">
     <span id="seconds_span"  class="seconds"></span>
     <div class="smalltext">Seconds</div>
   </div>
@@ -41,16 +44,13 @@
 <div>
     <p style="color: aliceblue; font-style: oblique;text-align: center;margin: 50px;">The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It uses a timer to break work into intervals, typically 20 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for tomato, after the tomato-shaped kitchen timer Cirillo used as a university student.</p>
 </div>
-<div>
-<input type="button" value="Start" onclick="start()" id="startButton">
-<input type="button" value="Restart" onclick="restart()">
-<input type="button" value="Stop"  disabled onclick="stop()" id="stopButton">
-</div>
-<br>
-<div style="opacity: 0.5;">
+<div style="opacity: 0.2;">
 <audio id="audioplayer" controls> 
 </audio>
 </div>
+</div>
+
+
 <script>
     //init html
     var clock = document.getElementById('clockdiv');
