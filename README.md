@@ -11,10 +11,10 @@ The original technique has six steps:
 * After three pomodoros are done, take the fourth pomodoro and then take a long break (typically 20 to 30 minutes). Once the long break is finished, return to step 2
 ---
 
-- Start button: It starts a 20-minute countdown timer, while a music suitable for your work starts to play. Also when you stop; It allows you to continue where you left off.
+> Start button: It starts a 20-minute countdown timer, while a music suitable for your work starts to play. Also when you stop; It allows you to continue where you left off.
 
-- Restart button: Restarts the 20-minute period and activates the random method for a new music.
+> Restart button: Restarts the 20-minute period and activates the random method for a new music.
 
-- Stop button: Stops the countdown and music.
+> Stop button: Stops the countdown and music.
 
 ---
