@@ -1,5 +1,5 @@
 # Pomodoro
-Timer Images [![Timer](images/timer.png)](https://erelbi.github.io/Pomodoro/)
+Timer Online [![Timer](images/timer.png)](https://erelbi.github.io/Pomodoro/)
 ==============
 The original technique has six steps:
 
